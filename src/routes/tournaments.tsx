@@ -94,6 +94,8 @@ function TournamentsPage() {
                 <a
                   href={APK_URL}
                   download
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full border border-flame/40 bg-flame/10 py-1.5 text-xs font-semibold text-flame hover:bg-flame hover:text-flame-foreground"
                 >
                   <Crosshair className="h-3 w-3" /> Join

@@ -1,14 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import { Download, Mail, MessageCircle, Shield, Twitter } from "lucide-react";
+import jxmLogo from "@/assets/jxm-logo.png";
 
-export const APK_URL = "https://drive.google.com/uc?id=1zyXmADCKSLJZNf-w2DqBIdoeiLHVctFQ&export=download";
+export const APK_URL = "https://www.dropbox.com/scl/fi/ojmj6h4en2w7hbd1sgwdi/Jxm.apk?rlkey=r792bycqb3i8ajagwqv5jh779&st=b95h1hdw&dl=1";
 
 export function Logo() {
   return (
     <Link to="/" className="flex items-center gap-2">
-      <span className="font-display text-base tracking-[0.15em]">
-        JXM <span className="text-gradient-flame">TOUR CLUB</span>
-      </span>
+      <img
+        src={jxmLogo}
+        alt="JXM Tour Club"
+        className="h-12 w-auto object-contain"
+      />
     </Link>
   );
 }
@@ -38,6 +41,8 @@ export function DownloadButton({
     <a
       href={APK_URL}
       download
+      target="_blank"
+      rel="noopener noreferrer"
       className={`inline-flex items-center gap-1.5 rounded-full font-medium ${sizes[size]} ${variants[variant]} ${className}`}
     >
       <Download className="h-3.5 w-3.5" strokeWidth={2.5} />
@@ -157,6 +162,8 @@ export function Footer() {
           <a
             href={APK_URL}
             download
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-[10px] font-medium text-flame hover:underline"
           >
             <Download className="h-3 w-3" strokeWidth={2} />

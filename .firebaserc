@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "jxmtourclub-c9093"
+  },
+  "targets": {
+    "jxmtourclub-c9093": {
+      "hosting": {
+        "jxmtourclub247": [
+          "jxmtourclub247"
+        ]
+      }
+    }
+  }
+}
