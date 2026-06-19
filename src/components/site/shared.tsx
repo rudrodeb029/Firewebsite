@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Download, Mail, MessageCircle, Shield, Twitter } from "lucide-react";
 import jxmLogo from "@/assets/jxm-logo.png";
+import { CyberCard } from "./CyberCard";
 
 export const APK_URL = "https://www.dropbox.com/scl/fi/ojmj6h4en2w7hbd1sgwdi/Jxm.apk?rlkey=r792bycqb3i8ajagwqv5jh779&st=b95h1hdw&dl=1";
 
@@ -57,6 +58,7 @@ const NAV = [
   { to: "/how-it-works", label: "How it works" },
   { to: "/leaderboard", label: "Leaderboard" },
   { to: "/faq", label: "FAQ" },
+  { to: "/join", label: "Join" },
 ] as const;
 
 export function Navbar() {
@@ -124,10 +126,10 @@ export function Footer() {
           <div>
             <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground">Legal</div>
             <ul className="mt-3 space-y-2 text-[11px] text-muted-foreground">
-              <li><a href="#" className="hover:text-flame">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-flame">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-flame">Refund Policy</a></li>
-              <li><a href="#" className="hover:text-flame">Responsible Gaming</a></li>
+              <li><Link to="/terms" className="hover:text-flame">Terms of Service</Link></li>
+              <li><Link to="/privacy" className="hover:text-flame">Privacy Policy</Link></li>
+              <li><Link to="/refund" className="hover:text-flame">Refund Policy</Link></li>
+              <li><Link to="/responsible-gaming" className="hover:text-flame">Responsible Gaming</Link></li>
             </ul>
           </div>
 
@@ -180,15 +182,17 @@ export function PageHeader({
   title,
   desc,
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: React.ReactNode;
   desc?: string;
 }) {
   return (
     <div className="mx-auto max-w-[820px] px-5 pb-10 pt-16 text-center">
-      <div className="text-[10px] font-semibold uppercase tracking-[0.25em] text-flame">
-        {eyebrow}
-      </div>
+      {eyebrow && (
+        <div className="text-[10px] font-semibold uppercase tracking-[0.25em] text-flame">
+          {eyebrow}
+        </div>
+      )}
       <h1 className="mt-3 font-display text-3xl tracking-tight sm:text-4xl">{title}</h1>
       {desc && <p className="mx-auto mt-3 max-w-md text-sm text-muted-foreground">{desc}</p>}
     </div>
@@ -197,9 +201,20 @@ export function PageHeader({
 
 export function PageShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-background text-foreground text-[15px] leading-relaxed antialiased">
+    <div className="min-h-screen w-full overflow-x-hidden bg-[#07050f] text-foreground text-[15px] leading-relaxed antialiased relative">
+      {/* Cyber Grid Background */}
+      <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
+      
+      {/* Ambient Glows */}
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-500/5 blur-[120px] pointer-events-none -z-0" />
+      <div className="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-sky-500/5 blur-[150px] pointer-events-none -z-0" />
+      
       <Navbar />
-      <main>{children}</main>
+      <main className="relative mx-auto max-w-[1200px] px-4 py-8 md:py-12 z-10">
+        <CyberCard color="purple" showSlantedBars={true} hoverEffect={false} className="w-full min-h-[70vh] shadow-[0_0_50px_rgba(168,85,247,0.08)]">
+          {children}
+        </CyberCard>
+      </main>
       <Footer />
     </div>
   );

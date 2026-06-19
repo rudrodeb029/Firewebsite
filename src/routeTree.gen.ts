@@ -10,8 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TournamentsRouteImport } from './routes/tournaments'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ResponsibleGamingRouteImport } from './routes/responsible-gaming'
+import { Route as RefundRouteImport } from './routes/refund'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ModesRouteImport } from './routes/modes'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
+import { Route as JoinRouteImport } from './routes/join'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as IndexRouteImport } from './routes/index'
@@ -19,6 +24,26 @@ import { Route as IndexRouteImport } from './routes/index'
 const TournamentsRoute = TournamentsRouteImport.update({
   id: '/tournaments',
   path: '/tournaments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResponsibleGamingRoute = ResponsibleGamingRouteImport.update({
+  id: '/responsible-gaming',
+  path: '/responsible-gaming',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundRoute = RefundRouteImport.update({
+  id: '/refund',
+  path: '/refund',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ModesRoute = ModesRouteImport.update({
@@ -29,6 +54,11 @@ const ModesRoute = ModesRouteImport.update({
 const LeaderboardRoute = LeaderboardRouteImport.update({
   id: '/leaderboard',
   path: '/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JoinRoute = JoinRouteImport.update({
+  id: '/join',
+  path: '/join',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HowItWorksRoute = HowItWorksRouteImport.update({
@@ -51,16 +81,26 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/faq': typeof FaqRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/join': typeof JoinRoute
   '/leaderboard': typeof LeaderboardRoute
   '/modes': typeof ModesRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund': typeof RefundRoute
+  '/responsible-gaming': typeof ResponsibleGamingRoute
+  '/terms': typeof TermsRoute
   '/tournaments': typeof TournamentsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/faq': typeof FaqRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/join': typeof JoinRoute
   '/leaderboard': typeof LeaderboardRoute
   '/modes': typeof ModesRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund': typeof RefundRoute
+  '/responsible-gaming': typeof ResponsibleGamingRoute
+  '/terms': typeof TermsRoute
   '/tournaments': typeof TournamentsRoute
 }
 export interface FileRoutesById {
@@ -68,8 +108,13 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/faq': typeof FaqRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/join': typeof JoinRoute
   '/leaderboard': typeof LeaderboardRoute
   '/modes': typeof ModesRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund': typeof RefundRoute
+  '/responsible-gaming': typeof ResponsibleGamingRoute
+  '/terms': typeof TermsRoute
   '/tournaments': typeof TournamentsRoute
 }
 export interface FileRouteTypes {
@@ -78,24 +123,39 @@ export interface FileRouteTypes {
     | '/'
     | '/faq'
     | '/how-it-works'
+    | '/join'
     | '/leaderboard'
     | '/modes'
+    | '/privacy'
+    | '/refund'
+    | '/responsible-gaming'
+    | '/terms'
     | '/tournaments'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/faq'
     | '/how-it-works'
+    | '/join'
     | '/leaderboard'
     | '/modes'
+    | '/privacy'
+    | '/refund'
+    | '/responsible-gaming'
+    | '/terms'
     | '/tournaments'
   id:
     | '__root__'
     | '/'
     | '/faq'
     | '/how-it-works'
+    | '/join'
     | '/leaderboard'
     | '/modes'
+    | '/privacy'
+    | '/refund'
+    | '/responsible-gaming'
+    | '/terms'
     | '/tournaments'
   fileRoutesById: FileRoutesById
 }
@@ -103,8 +163,13 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FaqRoute: typeof FaqRoute
   HowItWorksRoute: typeof HowItWorksRoute
+  JoinRoute: typeof JoinRoute
   LeaderboardRoute: typeof LeaderboardRoute
   ModesRoute: typeof ModesRoute
+  PrivacyRoute: typeof PrivacyRoute
+  RefundRoute: typeof RefundRoute
+  ResponsibleGamingRoute: typeof ResponsibleGamingRoute
+  TermsRoute: typeof TermsRoute
   TournamentsRoute: typeof TournamentsRoute
 }
 
@@ -115,6 +180,34 @@ declare module '@tanstack/react-router' {
       path: '/tournaments'
       fullPath: '/tournaments'
       preLoaderRoute: typeof TournamentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/responsible-gaming': {
+      id: '/responsible-gaming'
+      path: '/responsible-gaming'
+      fullPath: '/responsible-gaming'
+      preLoaderRoute: typeof ResponsibleGamingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refund': {
+      id: '/refund'
+      path: '/refund'
+      fullPath: '/refund'
+      preLoaderRoute: typeof RefundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/modes': {
@@ -129,6 +222,13 @@ declare module '@tanstack/react-router' {
       path: '/leaderboard'
       fullPath: '/leaderboard'
       preLoaderRoute: typeof LeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/join': {
+      id: '/join'
+      path: '/join'
+      fullPath: '/join'
+      preLoaderRoute: typeof JoinRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/how-it-works': {
@@ -159,8 +259,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FaqRoute: FaqRoute,
   HowItWorksRoute: HowItWorksRoute,
+  JoinRoute: JoinRoute,
   LeaderboardRoute: LeaderboardRoute,
   ModesRoute: ModesRoute,
+  PrivacyRoute: PrivacyRoute,
+  RefundRoute: RefundRoute,
+  ResponsibleGamingRoute: ResponsibleGamingRoute,
+  TermsRoute: TermsRoute,
   TournamentsRoute: TournamentsRoute,
 }
 export const routeTree = rootRouteImport

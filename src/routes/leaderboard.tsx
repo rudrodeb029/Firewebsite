@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Medal, TrendingUp } from "lucide-react";
 import { PageHeader, PageShell } from "@/components/site/shared";
+import { CyberCard } from "@/components/site/CyberCard";
 
 export const Route = createFileRoute("/leaderboard")({
   head: () => ({
@@ -31,7 +32,6 @@ function LeaderboardPage() {
   return (
     <PageShell>
       <PageHeader
-        eyebrow="Season 7 · Hall of fame"
         title={<>Top <span className="text-gradient-flame">earners</span></>}
         desc="Refreshed every hour. Earnings are net of entry fees."
       />
@@ -40,35 +40,37 @@ function LeaderboardPage() {
           <TrendingUp className="h-3 w-3 text-flame" />
           Updated 04 min ago
         </div>
-        <div className="overflow-hidden rounded-2xl border border-border bg-surface">
-          <div className="grid grid-cols-[40px_1fr_60px_60px_110px] gap-4 border-b border-border/60 px-4 py-2 text-[10px] uppercase tracking-wider text-muted-foreground">
-            <div>#</div>
-            <div>Player</div>
-            <div className="text-right">Wins</div>
-            <div className="text-right">K/D</div>
-            <div className="text-right">Earnings</div>
-          </div>
-          {PLAYERS.map((p) => (
-            <div
-              key={p.rank}
-              className="grid grid-cols-[40px_1fr_60px_60px_110px] items-center gap-4 border-b border-border/40 px-4 py-3 text-sm last:border-0 hover:bg-surface-elevated"
-            >
-              <div className={`flex items-center gap-1 font-display text-base ${medal(p.rank)}`}>
-                <Medal className="h-3.5 w-3.5" />
-                {p.rank}
-              </div>
-              <div>
-                <div className="truncate font-medium">{p.name}</div>
-                <div className="text-[10px] text-muted-foreground">{p.region}</div>
-              </div>
-              <div className="text-right text-xs text-muted-foreground">{p.wins}</div>
-              <div className="text-right text-xs text-electric">{p.kd}</div>
-              <div className="text-right font-display text-sm text-gradient-flame">
-                {p.earnings}
-              </div>
+        <CyberCard color="purple" showSlantedBars={true} hoverEffect={false}>
+          <div className="overflow-hidden px-4 md:px-6">
+            <div className="grid grid-cols-[40px_1fr_60px_60px_110px] gap-4 border-b border-border/40 pb-3 text-[10px] uppercase tracking-wider text-purple-400 font-bold">
+              <div>#</div>
+              <div>Player</div>
+              <div className="text-right">Wins</div>
+              <div className="text-right">K/D</div>
+              <div className="text-right">Earnings</div>
             </div>
-          ))}
-        </div>
+            {PLAYERS.map((p) => (
+              <div
+                key={p.rank}
+                className="grid grid-cols-[40px_1fr_60px_60px_110px] items-center gap-4 border-b border-border/30 py-3.5 text-sm last:border-0 hover:bg-purple-950/20 transition-colors duration-150"
+              >
+                <div className={`flex items-center gap-1 font-display text-base ${medal(p.rank)}`}>
+                  <Medal className="h-3.5 w-3.5" />
+                  {p.rank}
+                </div>
+                <div>
+                  <div className="truncate font-semibold text-foreground/90">{p.name}</div>
+                  <div className="text-[10px] text-muted-foreground">{p.region}</div>
+                </div>
+                <div className="text-right text-xs text-muted-foreground">{p.wins}</div>
+                <div className="text-right text-xs text-sky-400 drop-shadow-[0_0_2px_rgba(14,165,233,0.3)]">{p.kd}</div>
+                <div className="text-right font-display text-sm text-gradient-flame font-bold">
+                  {p.earnings}
+                </div>
+              </div>
+            ))}
+          </div>
+        </CyberCard>
       </div>
     </PageShell>
   );

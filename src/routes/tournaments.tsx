@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Crosshair, Users, Filter } from "lucide-react";
 import { useState } from "react";
 import { APK_URL, PageHeader, PageShell } from "@/components/site/shared";
+import { CyberCard } from "@/components/site/CyberCard";
 
 export const Route = createFileRoute("/tournaments")({
   head: () => ({
@@ -34,7 +35,6 @@ function TournamentsPage() {
   return (
     <PageShell>
       <PageHeader
-        eyebrow="Open Lobbies"
         title={<>Find your next <span className="text-gradient-flame">Booyah</span></>}
         desc="Filter by mode. Entry fees range $0 – $1.20. Brackets fill fast."
       />
@@ -59,48 +59,80 @@ function TournamentsPage() {
           </span>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((t) => {
             const pct = Math.round((t.filled / t.total) * 100);
+            const cardColor: "blue" | "orange" | "purple" = 
+              t.mode === "Solo" ? "blue" : 
+              t.mode === "Duo" ? "orange" : 
+              "purple";
             return (
-              <article
+              <CyberCard
                 key={t.title}
-                className="flex flex-col rounded-2xl border border-border bg-card p-4 transition-all hover:-translate-y-0.5 hover:border-flame/40"
+                color={cardColor}
+                showSlantedBars={true}
+                hoverEffect={true}
+                className="flex flex-col h-full"
               >
-                <div className="flex items-center justify-between text-[10px] uppercase tracking-wider">
-                  <span className="rounded-md bg-electric/15 px-1.5 py-0.5 font-semibold text-electric">
-                    {t.mode}
-                  </span>
-                  <span className="text-muted-foreground">{t.time}</span>
-                </div>
-                <h3 className="mt-3 text-sm font-semibold">{t.title}</h3>
-                <div className="mt-3 flex items-end justify-between">
+                <div className="flex flex-col h-full justify-between">
                   <div>
-                    <div className="text-[10px] uppercase text-muted-foreground">Prize</div>
-                    <div className="font-display text-lg text-gradient-flame">{t.prize}</div>
+                    <div className="flex items-center justify-between text-[10px] uppercase tracking-wider">
+                      <span className={`rounded px-1.5 py-0.5 font-bold ${
+                        cardColor === "blue" ? "bg-sky-500/10 text-sky-400 border border-sky-500/20" :
+                        cardColor === "orange" ? "bg-amber-500/10 text-amber-400 border border-amber-500/20" :
+                        "bg-purple-500/10 text-purple-400 border border-purple-500/20"
+                      }`}>
+                        {t.mode}
+                      </span>
+                      <span className="text-muted-foreground">{t.time}</span>
+                    </div>
+                    <h3 className="mt-4 text-sm font-semibold">{t.title}</h3>
+                    <div className="mt-4 flex items-end justify-between">
+                      <div>
+                        <div className="text-[10px] uppercase text-muted-foreground font-semibold">Prize Pool</div>
+                        <div className={`font-display text-lg font-bold ${
+                          cardColor === "blue" ? "text-sky-400" :
+                          cardColor === "orange" ? "text-amber-400" :
+                          "text-purple-400"
+                        }`}>{t.prize}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-[10px] uppercase text-muted-foreground font-semibold">Entry Fee</div>
+                        <div className="text-sm font-semibold text-foreground/90">{t.entry}</div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-[10px] uppercase text-muted-foreground">Entry</div>
-                    <div className="text-sm font-semibold">{t.entry}</div>
+                  <div className="mt-4">
+                    <div className="h-1.5 overflow-hidden rounded-full bg-muted/40">
+                      <div className={`h-full ${
+                        cardColor === "blue" ? "bg-sky-500" :
+                        cardColor === "orange" ? "bg-amber-500" :
+                        "bg-purple-500"
+                      }`} style={{ width: `${pct}%` }} />
+                    </div>
+                    <div className="mt-2 flex items-center justify-between text-[10px] text-muted-foreground">
+                      <span className="flex items-center"><Users className="mr-1 h-3 w-3 text-foreground/50" />{t.filled} / {t.total} slots</span>
+                      <span className="font-semibold">{pct}% filled</span>
+                    </div>
+                    <a
+                      href={APK_URL}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`mt-4 w-full inline-flex items-center justify-center gap-1.5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 border ${
+                        cardColor === "blue" ? "border-sky-500/30 bg-sky-500/10 text-sky-400 hover:bg-sky-500 hover:text-black shadow-[0_0_10px_rgba(14,165,233,0.1)]" :
+                        cardColor === "orange" ? "border-amber-500/30 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black shadow-[0_0_10px_rgba(245,158,11,0.1)]" :
+                        "border-purple-500/30 bg-purple-500/10 text-purple-400 hover:bg-purple-500 hover:text-black shadow-[0_0_10px_rgba(168,85,247,0.1)]"
+                      }`}
+                      style={{
+                        clipPath: "polygon(0 8px, 8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%)",
+                      }}
+                    >
+                      <Crosshair className="h-3 w-3" /> Join Match
+                    </a>
                   </div>
                 </div>
-                <div className="mt-3 h-1 overflow-hidden rounded-full bg-muted">
-                  <div className="h-full bg-gradient-flame" style={{ width: `${pct}%` }} />
-                </div>
-                <div className="mt-1.5 flex items-center justify-between text-[10px] text-muted-foreground">
-                  <span><Users className="mr-1 inline h-2.5 w-2.5" />{t.filled}/{t.total}</span>
-                  <span>{pct}%</span>
-                </div>
-                <a
-                  href={APK_URL}
-                  download
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full border border-flame/40 bg-flame/10 py-1.5 text-xs font-semibold text-flame hover:bg-flame hover:text-flame-foreground"
-                >
-                  <Crosshair className="h-3 w-3" /> Join
-                </a>
-              </article>
+              </CyberCard>
             );
           })}
         </div>

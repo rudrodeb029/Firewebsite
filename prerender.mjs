@@ -1,9 +1,23 @@
-// Pre-render the index page to generate index.html for static hosting
+// Pre-render the index page and all subroutes to generate static HTML files for static hosting
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { writeFileSync } from 'fs';
+import { writeFileSync, mkdirSync } from 'fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const ROUTES = [
+  '/',
+  '/tournaments',
+  '/modes',
+  '/how-it-works',
+  '/leaderboard',
+  '/faq',
+  '/join',
+  '/terms',
+  '/privacy',
+  '/refund',
+  '/responsible-gaming'
+];
 
 async function prerender() {
   // Start the server
@@ -12,20 +26,29 @@ async function prerender() {
   // Wait for server to start
   await new Promise(r => setTimeout(r, 2000));
   
-  try {
-    const response = await fetch('http://localhost:3000/');
-    const html = await response.text();
-    
-    // Write the HTML to the public directory
-    writeFileSync(join(__dirname, '.output', 'public', 'index.html'), html);
-    console.log('Successfully pre-rendered index.html');
-    console.log('HTML length:', html.length);
-  } catch (error) {
-    console.error('Failed to pre-render:', error.message);
-    
-    // Fallback: create a minimal SPA shell
-    console.log('Creating fallback SPA shell...');
-    createFallbackShell();
+  for (const route of ROUTES) {
+    try {
+      const response = await fetch(`http://localhost:3000${route}`);
+      const html = await response.text();
+      
+      let targetPath;
+      if (route === '/') {
+        targetPath = join(__dirname, '.output', 'public', 'index.html');
+      } else {
+        const dir = join(__dirname, '.output', 'public', route);
+        mkdirSync(dir, { recursive: true });
+        targetPath = join(dir, 'index.html');
+      }
+      
+      writeFileSync(targetPath, html);
+      console.log(`Successfully pre-rendered ${route} -> ${targetPath}`);
+    } catch (error) {
+      console.error(`Failed to pre-render ${route}:`, error.message);
+      if (route === '/') {
+        console.log('Creating fallback SPA shell...');
+        createFallbackShell();
+      }
+    }
   }
   
   process.exit(0);

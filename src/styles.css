@@ -246,3 +246,44 @@
     transform: perspective(1200px) rotateY(-2deg);
   }
 }
+
+/* Gaming Glowing Animations */
+@keyframes cyber-glow-purple {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.2), inset 0 0 10px rgba(168, 85, 247, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(168, 85, 247, 0.55), inset 0 0 18px rgba(168, 85, 247, 0.25);
+  }
+}
+
+@keyframes cyber-glow-blue {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.2), inset 0 0 10px rgba(14, 165, 233, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(14, 165, 233, 0.55), inset 0 0 18px rgba(14, 165, 233, 0.25);
+  }
+}
+
+@keyframes cyber-glow-orange {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.2), inset 0 0 10px rgba(245, 158, 11, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(245, 158, 11, 0.55), inset 0 0 18px rgba(245, 158, 11, 0.25);
+  }
+}
+
+.animate-glow-purple {
+  animation: cyber-glow-purple 4s infinite ease-in-out;
+}
+
+.animate-glow-blue {
+  animation: cyber-glow-blue 4s infinite ease-in-out;
+}
+
+.animate-glow-orange {
+  animation: cyber-glow-orange 4s infinite ease-in-out;
+}
+

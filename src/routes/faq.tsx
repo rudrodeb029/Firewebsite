@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ChevronDown, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { PageHeader, PageShell } from "@/components/site/shared";
+import { CyberCard } from "@/components/site/CyberCard";
 
 export const Route = createFileRoute("/faq")({
   head: () => ({
@@ -46,52 +47,68 @@ function FaqPage() {
   return (
     <PageShell>
       <PageHeader
-        eyebrow="FAQ"
         title={<>Questions, <span className="text-gradient-flame">answered</span></>}
         desc="Can't find what you need? Tap the support button inside the app."
       />
       <div className="mx-auto max-w-[720px] space-y-8 px-5 pb-20">
-        {GROUPS.map((g, gi) => (
-          <div key={g.label}>
-            <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-electric">
-              {g.label}
-            </div>
-            <div className="divide-y divide-border rounded-2xl border border-border bg-surface">
-              {g.items.map((f, i) => {
-                const key = `${gi}-${i}`;
-                const isOpen = open === key;
-                return (
-                  <div key={f.q}>
-                    <button
-                      onClick={() => setOpen(isOpen ? null : key)}
-                      className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium hover:bg-surface-elevated"
-                    >
-                      {f.q}
-                      <ChevronDown
-                        className={`h-4 w-4 text-muted-foreground transition-transform ${
-                          isOpen ? "rotate-180 text-flame" : ""
-                        }`}
-                      />
-                    </button>
-                    {isOpen && (
-                      <div className="px-4 pb-3 text-xs text-muted-foreground animate-fade-in">
-                        {f.a}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        ))}
+        {GROUPS.map((g, gi) => {
+          const groupColors: ("blue" | "orange" | "purple")[] = ["blue", "orange", "purple"];
+          const cardColor = groupColors[gi % 3];
+          const textGlowClass = 
+            cardColor === "blue" ? "text-sky-400 drop-shadow-[0_0_4px_rgba(14,165,233,0.5)]" :
+            cardColor === "orange" ? "text-amber-400 drop-shadow-[0_0_4px_rgba(245,158,11,0.5)]" :
+            "text-purple-400 drop-shadow-[0_0_4px_rgba(168,85,247,0.5)]";
 
-        <div className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 text-xs">
-          <MessageCircle className="h-4 w-4 text-flame" />
-          Still stuck? Email{" "}
-          <a className="text-flame hover:underline" href="mailto:help@jxmtourclub.app">
-            help@jxmtourclub.app
-          </a>
-        </div>
+          return (
+            <div key={g.label}>
+              <div className={`mb-3 text-[10px] font-bold uppercase tracking-[0.25em] ${textGlowClass}`}>
+                {g.label}
+              </div>
+              <CyberCard color={cardColor} showSlantedBars={true} hoverEffect={false}>
+                <div className="divide-y divide-border/30">
+                  {g.items.map((f, i) => {
+                    const key = `${gi}-${i}`;
+                    const isOpen = open === key;
+                    return (
+                      <div key={f.q} className="first:pt-0 last:pb-0 py-1">
+                        <button
+                          onClick={() => setOpen(isOpen ? null : key)}
+                          className="flex w-full items-center justify-between gap-3 py-3 text-left text-sm font-semibold hover:text-foreground/85 transition-colors"
+                        >
+                          {f.q}
+                          <ChevronDown
+                            className={`h-4 w-4 text-muted-foreground transition-transform ${
+                              isOpen ? `rotate-180 ${
+                                cardColor === "blue" ? "text-sky-400" :
+                                cardColor === "orange" ? "text-amber-400" :
+                                "text-purple-400"
+                              }` : ""
+                            }`}
+                          />
+                        </button>
+                        {isOpen && (
+                          <div className="pb-3 text-xs text-muted-foreground leading-relaxed animate-fade-in">
+                            {f.a}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </CyberCard>
+            </div>
+          );
+        })}
+
+        <CyberCard color="orange" showSlantedBars={false} hoverEffect={true}>
+          <div className="flex items-center gap-3 text-xs">
+            <MessageCircle className="h-4 w-4 text-amber-400 drop-shadow-[0_0_4px_rgba(245,158,11,0.6)]" />
+            <span className="font-semibold text-foreground/80">Still stuck? Email</span>
+            <a className="text-amber-400 hover:underline font-bold drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]" href="mailto:help@jxmtourclub.app">
+              help@jxmtourclub.app
+            </a>
+          </div>
+        </CyberCard>
       </div>
     </PageShell>
   );

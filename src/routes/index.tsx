@@ -6,6 +6,7 @@ import heroImage2 from "@/assets/hero-freefire-2.png";
 import heroImage3 from "@/assets/hero-freefire-3.png";
 import heroImage4 from "@/assets/hero-freefire-4.png";
 import { DownloadButton, Footer, Navbar } from "@/components/site/shared";
+import { CyberCard } from "@/components/site/CyberCard";
 
 const heroSlides = [heroImage1, heroImage2, heroImage3, heroImage4];
 const SLIDE_INTERVAL = 5000;
@@ -18,7 +19,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Join 120K+ players on Bangladesh's premier Free Fire tournament platform. Compete daily, climb the leaderboard, and withdraw winnings instantly.",
+          "Join 120K+ players on Bangladesh's premier Free Fire tournament platform. Complete daily, climb the leaderboard, and withdraw winnings instantly.",
       },
       { property: "og:title", content: "JXM Tour Club — Where Champions Rise" },
       {
@@ -92,12 +93,7 @@ function Hero() {
       <div className="relative mx-auto grid min-h-[82vh] max-w-[1200px] grid-cols-1 items-center gap-8 px-5 py-20 md:grid-cols-2 md:gap-12 lg:gap-20">
         {/* Left column — Text & CTA */}
         <div className="flex flex-col items-start text-left">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-flame/40 bg-flame/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-flame backdrop-blur">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-flame" />
-            Season 7 — Now Live
-          </span>
-
-          <h1 className="mt-5 font-display text-4xl leading-[1.05] tracking-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)] sm:text-5xl lg:text-6xl">
+          <h1 className="font-display text-4xl leading-[1.05] tracking-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)] sm:text-5xl lg:text-6xl">
             Where Champions{" "}
             <span className="text-gradient-flame">Rise.</span>
             <br />
@@ -106,7 +102,7 @@ function Hero() {
           </h1>
 
           <p className="mt-5 max-w-md text-sm leading-relaxed text-foreground/75">
-            Bangladesh&apos;s premier Free Fire tournament platform — compete in daily
+            Bangladesh&apos;s premier Free Fire tournament platform — complete in daily
             matches, climb the leaderboard, and withdraw your winnings instantly.
           </p>
 
@@ -144,29 +140,39 @@ function Hero() {
         {/* Right column — Stats cards */}
         <div className="flex flex-col gap-3 md:gap-4">
           {[
-            { value: "120K+", label: "Active Players", icon: Users, desc: "Competing across Bangladesh" },
-            { value: "\u09f35.8L+", label: "Prize Pool Paid", icon: Trophy, desc: "Real cash, instant withdrawals" },
-            { value: "1,200+", label: "Matches Hosted", icon: Crosshair, desc: "Daily tournaments, zero downtime" },
+            { value: "120K+", label: "Active Players", icon: Users, desc: "", color: "purple" },
+            { value: "৳5.8L+", label: "Prize Pool Paid", icon: Trophy, desc: "", color: "blue" },
+            { value: "1,200+", label: "Matches Hosted", icon: Crosshair, desc: "", color: "orange" },
           ].map((stat, i) => (
-            <div
+            <CyberCard
               key={i}
-              className="group flex items-center gap-4 rounded-2xl border border-border/50 bg-background/30 p-4 backdrop-blur-md transition-all hover:border-flame/40 hover:bg-background/50 md:p-5"
+              color={stat.color as any}
+              showSlantedBars={true}
+              hoverEffect={true}
             >
-              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-flame/10 text-flame transition-transform group-hover:scale-110">
-                <stat.icon className="h-5 w-5" strokeWidth={2} />
+              <div className="flex items-center gap-4">
+                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-[#1d1929] border border-border/40">
+                  <stat.icon className={`h-5 w-5 ${
+                    stat.color === "purple" ? "text-purple-400 drop-shadow-[0_0_5px_rgba(168,85,247,0.5)]" :
+                    stat.color === "blue" ? "text-sky-400 drop-shadow-[0_0_5px_rgba(14,165,233,0.5)]" :
+                    "text-amber-400 drop-shadow-[0_0_5px_rgba(245,158,11,0.5)]"
+                  }`} strokeWidth={2} />
+                </div>
+                <div>
+                  <div className="font-display text-2xl tracking-tight text-foreground lg:text-3xl animate-pulse-slow">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-foreground/80">
+                    {stat.label}
+                  </div>
+                  {stat.desc && (
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {stat.desc}
+                    </div>
+                  )}
+                </div>
               </div>
-              <div>
-                <div className="font-display text-2xl tracking-tight text-foreground lg:text-3xl">
-                  {stat.value}
-                </div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-foreground/80">
-                  {stat.label}
-                </div>
-                <div className="mt-0.5 text-[11px] text-muted-foreground">
-                  {stat.desc}
-                </div>
-              </div>
-            </div>
+            </CyberCard>
           ))}
         </div>
       </div>
@@ -183,23 +189,35 @@ function Quick() {
   return (
     <section className="border-t border-border/50 py-12">
       <div className="mx-auto grid max-w-[1100px] gap-3 px-5 sm:grid-cols-3">
-        {items.map((i) => (
-          <Link
-            key={i.to}
-            to={i.to}
-            className="group flex items-center gap-3 rounded-2xl border border-border bg-surface p-4 hover:-translate-y-0.5 hover:border-flame/40 transition-all"
-          >
-            <div className="grid h-9 w-9 place-items-center rounded-lg bg-flame/10 text-flame">
-              <i.icon className="h-4 w-4" strokeWidth={2.2} />
-            </div>
-            <div>
-              <div className="text-sm font-semibold">{i.label}</div>
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                {i.hint}
-              </div>
-            </div>
-          </Link>
-        ))}
+        {items.map((i, index) => {
+          const colors: ("purple" | "blue" | "orange")[] = ["blue", "purple", "orange"];
+          const color = colors[index % 3];
+          return (
+            <Link
+              key={i.to}
+              to={i.to}
+              className="block group"
+            >
+              <CyberCard color={color} showSlantedBars={true} hoverEffect={true} className="h-full">
+                <div className="flex items-center gap-3">
+                  <div className="grid h-9 w-9 place-items-center rounded-lg bg-[#141221] border border-border/30">
+                    <i.icon className={`h-4 w-4 ${
+                      color === "purple" ? "text-purple-400 drop-shadow-[0_0_4px_rgba(168,85,247,0.5)]" :
+                      color === "blue" ? "text-sky-400 drop-shadow-[0_0_4px_rgba(14,165,233,0.5)]" :
+                      "text-amber-400 drop-shadow-[0_0_4px_rgba(245,158,11,0.5)]"
+                    }`} strokeWidth={2.2} />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold">{i.label}</div>
+                    <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                      {i.hint}
+                    </div>
+                  </div>
+                </div>
+              </CyberCard>
+            </Link>
+          );
+        })}
       </div>
     </section>
   );
