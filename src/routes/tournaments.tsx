@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Crosshair, Users, Filter } from "lucide-react";
 import { useState } from "react";
 import { APK_URL, PageHeader, PageShell } from "@/components/site/shared";
@@ -114,11 +114,8 @@ function TournamentsPage() {
                       <span className="flex items-center"><Users className="mr-1 h-3 w-3 text-foreground/50" />{t.filled} / {t.total} slots</span>
                       <span className="font-semibold">{pct}% filled</span>
                     </div>
-                    <a
-                      href={APK_URL}
-                      download
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to="/join"
                       className={`mt-4 w-full inline-flex items-center justify-center gap-1.5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 border ${
                         cardColor === "blue" ? "border-sky-500/30 bg-sky-500/10 text-sky-400 hover:bg-sky-500 hover:text-black shadow-[0_0_10px_rgba(14,165,233,0.1)]" :
                         cardColor === "orange" ? "border-amber-500/30 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black shadow-[0_0_10px_rgba(245,158,11,0.1)]" :
@@ -129,7 +126,7 @@ function TournamentsPage() {
                       }}
                     >
                       <Crosshair className="h-3 w-3" /> Join Match
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </CyberCard>
