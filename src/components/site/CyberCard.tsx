@@ -115,14 +115,14 @@ export function CyberCard({
       <div 
         className={`absolute inset-0 bg-gradient-to-br ${currentTheme.bgGradient} z-0`} 
         style={{
-          clipPath: "polygon(0 15%, 2.5% 0, 97.5% 0, 100% 15%, 100% 85%, 97.5% 100%, 2.5% 100%, 0 85%)"
+          clipPath: "polygon(0% 15%, 2.5% 0%, 25% 0%, 27.5% 4%, 47.5% 4%, 50% 0%, 97.5% 0%, 100% 15%, 100% 85%, 97.5% 100%, 65% 100%, 62.5% 96%, 47.5% 96%, 45% 100%, 2.5% 100%, 0% 85%)"
         }}
       />
 
       {/* Sweeping scanline current light effect */}
       <div 
         className="absolute inset-0 overflow-hidden pointer-events-none z-10" 
-        style={{ clipPath: "polygon(0 15%, 2.5% 0, 97.5% 0, 100% 15%, 100% 85%, 97.5% 100%, 2.5% 100%, 0 85%)" }}
+        style={{ clipPath: "polygon(0% 15%, 2.5% 0%, 25% 0%, 27.5% 4%, 47.5% 4%, 50% 0%, 97.5% 0%, 100% 15%, 100% 85%, 97.5% 100%, 65% 100%, 62.5% 96%, 47.5% 96%, 45% 100%, 2.5% 100%, 0% 85%)" }}
       >
         <div 
           className={`absolute top-0 bottom-0 w-32 animate-current-sweep-${color}`}
@@ -136,21 +136,17 @@ export function CyberCard({
         />
       </div>
       
-      {/* Card Body with transform depth and comfortable padding */}
+      {/* Card Body with comfortable padding */}
       <div 
         className="relative z-10 p-6 md:p-8 min-h-[80px]"
-        style={{
-          clipPath: "polygon(0 15%, 2.5% 0, 97.5% 0, 100% 15%, 100% 85%, 97.5% 100%, 2.5% 100%, 0 85%)",
-          transformStyle: "preserve-3d",
-        }}
       >
-        <div style={{ transform: "translateZ(15px)", transformStyle: "preserve-3d" }}>
+        <div>
           {children}
         </div>
         
         {/* Slanted bars decoration bottom right */}
         {showSlantedBars && (
-          <div className="absolute bottom-5 right-6 flex gap-[3px] z-20 pointer-events-none" style={{ transform: "translateZ(12px)" }}>
+          <div className="absolute bottom-5 right-6 flex gap-[3px] z-20 pointer-events-none">
             <div className={`w-[3px] h-3.5 transform skew-x-[-25deg] ${currentTheme.bars}`} />
             <div className={`w-[3px] h-3.5 transform skew-x-[-25deg] ${currentTheme.bars}`} />
             <div className={`w-[3px] h-3.5 transform skew-x-[-25deg] ${currentTheme.bars}`} />
@@ -163,7 +159,6 @@ export function CyberCard({
         className="absolute inset-0 w-full h-full pointer-events-none z-20"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
-        style={{ transform: "translateZ(5px)" }}
       >
         <path
           d="M 0 15 L 2.5 0 L 25 0 L 27.5 4 L 47.5 4 L 50 0 L 97.5 0 L 100 15 L 100 85 L 97.5 100 L 65 100 L 62.5 96 L 47.5 96 L 45 100 L 2.5 100 L 0 85 Z"
@@ -325,10 +320,7 @@ export function CyberButton({
 
   return (
     <button
-      className={`relative py-3.5 px-8 text-sm font-semibold uppercase tracking-wider text-white border transition-all duration-300 active:scale-95 ${currentTheme.bg} ${currentTheme.border} ${className}`}
-      style={{
-        clipPath: "polygon(0 12px, 12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",
-      }}
+      className={`relative py-3.5 px-8 text-sm font-semibold uppercase tracking-wider text-white border transition-all duration-300 active:scale-95 rounded-sm ${currentTheme.bg} ${currentTheme.border} ${className}`}
       {...props}
     >
       <span className="relative z-10">{children}</span>

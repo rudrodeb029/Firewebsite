@@ -7,9 +7,9 @@ export const Route = createFileRoute("/how-it-works")({
   head: () => ({
     meta: [
       { title: "How It Works — Jxm Tour Club" },
-      { name: "description", content: "Install the app, join a lobby, win, withdraw to PayPal or bank. Four steps to your first payout." },
+      { name: "description", content: "Install the app, join a lobby, win, withdraw to bKash, Nagad or Binance. Four steps to your first payout." },
       { property: "og:title", content: "How It Works — Jxm Tour Club" },
-      { property: "og:description", content: "From install to PayPal payout in four steps." },
+      { property: "og:description", content: "From install to bKash/Nagad/Binance payout in four steps." },
     ],
   }),
   component: HowPage,
@@ -19,7 +19,7 @@ const STEPS = [
   { n: "01", icon: Download, title: "Install the APK", desc: "12 MB · Android 7+. No Play Store account needed.", time: "~1 min" },
   { n: "02", icon: UserPlus, title: "Create your profile", desc: "Link your Free Fire UID. Verify mobile + email.", time: "~2 min" },
   { n: "03", icon: Crosshair, title: "Join a lobby", desc: "Pay entry from wallet. Get room ID 5 min before match.", time: "Per match" },
-  { n: "04", icon: Wallet, title: "Withdraw winnings", desc: "PayPal / bank / crypto. No minimum threshold.", time: "<5 min" },
+  { n: "04", icon: Wallet, title: "Withdraw winnings", desc: "bKash · Nagad · Binance. No minimum threshold. Available 24/7.", time: "<2 min" },
 ];
 
 function HowPage() {

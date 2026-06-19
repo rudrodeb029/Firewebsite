@@ -114,21 +114,22 @@ function TournamentsPage() {
                       <span className="flex items-center"><Users className="mr-1 h-3 w-3 text-foreground/50" />{t.filled} / {t.total} slots</span>
                       <span className="font-semibold">{pct}% filled</span>
                     </div>
+                    <div className="relative z-30 mt-4" style={{ transform: "translateZ(20px)" }}>
                     <a
                       href={APK_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`mt-4 w-full inline-flex items-center justify-center gap-1.5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 border ${
+                      onClick={(e) => { e.stopPropagation(); window.open(APK_URL, '_blank'); }}
+                      className={`w-full inline-flex items-center justify-center gap-1.5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer select-none rounded-sm ${
                         cardColor === "blue" ? "border-sky-500/30 bg-sky-500/10 text-sky-400 hover:bg-sky-500 hover:text-black shadow-[0_0_10px_rgba(14,165,233,0.1)]" :
                         cardColor === "orange" ? "border-amber-500/30 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black shadow-[0_0_10px_rgba(245,158,11,0.1)]" :
                         "border-purple-500/30 bg-purple-500/10 text-purple-400 hover:bg-purple-500 hover:text-black shadow-[0_0_10px_rgba(168,85,247,0.1)]"
                       }`}
-                      style={{
-                        clipPath: "polygon(0 8px, 8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%)",
-                      }}
+                      style={{ pointerEvents: "auto" }}
                     >
                       <Crosshair className="h-3 w-3" /> Join Match
                     </a>
+                    </div>
                   </div>
                 </div>
               </CyberCard>

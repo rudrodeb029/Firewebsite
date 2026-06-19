@@ -184,7 +184,7 @@ function Quick() {
   const items = [
     { to: "/tournaments", icon: Trophy, label: "Browse open lobbies", hint: "Live & upcoming" },
     { to: "/modes", icon: Users, label: "Pick your mode", hint: "Solo · Duo · Squad" },
-    { to: "/how-it-works", icon: Wallet, label: "How payouts work", hint: "Instant PayPal" },
+    { to: "/how-it-works", icon: Wallet, label: "How payouts work", hint: "bKash · Nagad · Binance" },
   ] as const;
   return (
     <section className="border-t border-border/50 py-12">

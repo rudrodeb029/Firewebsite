@@ -208,8 +208,8 @@ export function PageShell({ children }: { children: React.ReactNode }) {
       <div className="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-sky-500/5 blur-[150px] pointer-events-none -z-0" />
       
       <Navbar />
-      <main className="relative mx-auto max-w-[1200px] px-4 py-8 md:py-12 z-10">
-        <CyberCard color="purple" showSlantedBars={true} hoverEffect={false} className="w-full min-h-[70vh] shadow-[0_0_50px_rgba(168,85,247,0.08)]">
+      <main className="relative w-full py-8 md:py-12 z-10">
+        <CyberCard color="purple" showSlantedBars={true} hoverEffect={false} className="w-full min-h-[70vh] shadow-[0_0_50px_rgba(168,85,247,0.08)] rounded-none">
           {children}
         </CyberCard>
       </main>

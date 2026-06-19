@@ -51,8 +51,7 @@ export function CyberForm() {
   return (
     <div className="w-full max-w-md mx-auto">
       {status === "success" ? (
-        <div className="text-center p-8 bg-green-950/20 border border-green-500/40 rounded-xl animate-fade-in shadow-[0_0_30px_rgba(34,197,94,0.15)]"
-             style={{ clipPath: "polygon(0 15px, 15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px))" }}>
+        <div className="text-center p-8 bg-green-950/20 border border-green-500/40 rounded-xl animate-fade-in shadow-[0_0_30px_rgba(34,197,94,0.15)]">
           <div className="flex justify-center mb-4">
             <CheckCircle className="h-16 w-16 text-green-400 drop-shadow-[0_0_10px_rgba(74,222,128,0.7)]" />
           </div>
@@ -63,8 +62,7 @@ export function CyberForm() {
           <div className="mt-6">
             <a
               href="/"
-              className="inline-flex py-2.5 px-6 border border-green-500/40 bg-green-500/10 text-green-400 text-xs font-semibold uppercase tracking-wider hover:bg-green-500 hover:text-black transition-all duration-300"
-              style={{ clipPath: "polygon(0 10px, 10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)" }}
+              className="inline-flex py-2.5 px-6 border border-green-500/40 bg-green-500/10 text-green-400 text-xs font-semibold uppercase tracking-wider hover:bg-green-500 hover:text-black transition-all duration-300 rounded-sm"
             >
               Return to Control Center
             </a>

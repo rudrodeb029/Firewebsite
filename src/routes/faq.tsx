@@ -20,8 +20,8 @@ const GROUPS: { label: string; items: { q: string; a: string }[] }[] = [
   {
     label: "Payments",
     items: [
-      { q: "How fast are withdrawals?", a: "PayPal usually under 5 minutes. Bank transfers under 30 minutes on weekdays." },
-      { q: "Is there a minimum withdrawal?", a: "No minimum — withdraw any winning balance, anytime." },
+      { q: "How fast are withdrawals?", a: "bKash & Nagad usually under 2 minutes. Binance transfers under 5 minutes. Available 24/7." },
+      { q: "Is there a minimum withdrawal?", a: "No minimum — withdraw any winning balance to bKash, Nagad, or Binance anytime." },
       { q: "Are entries refundable?", a: "Yes if the lobby fails to fill or a match is cancelled by us." },
     ],
   },

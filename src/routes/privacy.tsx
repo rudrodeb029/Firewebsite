@@ -36,7 +36,7 @@ function PrivacyPage() {
         <section className="space-y-3">
           <h3 className="font-display text-lg tracking-wider text-muted-foreground uppercase">3. Third-Party Sharing</h3>
           <p>
-            We do not sell or lease player profiles. Your information is only shared with verified payment processors (e.g. PayPal, secure banking systems) to execute payouts, and anti-cheat agencies to ensure fair play compliance.
+            We do not sell or lease player profiles. Your information is only shared with verified payment processors (bKash, Nagad, Binance) to execute payouts, and anti-cheat agencies to ensure fair play compliance.
           </p>
         </section>
 
