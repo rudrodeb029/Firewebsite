@@ -41,7 +41,6 @@ export function DownloadButton({
   return (
     <a
       href={APK_URL}
-      download
       target="_blank"
       rel="noopener noreferrer"
       className={`inline-flex items-center gap-1.5 rounded-full font-medium ${sizes[size]} ${variants[variant]} ${className}`}
@@ -163,7 +162,6 @@ export function Footer() {
           </span>
           <a
             href={APK_URL}
-            download
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-[10px] font-medium text-flame hover:underline"

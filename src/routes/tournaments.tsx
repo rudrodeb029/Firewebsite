@@ -116,6 +116,8 @@ function TournamentsPage() {
                     </div>
                     <a
                       href={APK_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`mt-4 w-full inline-flex items-center justify-center gap-1.5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 border ${
                         cardColor === "blue" ? "border-sky-500/30 bg-sky-500/10 text-sky-400 hover:bg-sky-500 hover:text-black shadow-[0_0_10px_rgba(14,165,233,0.1)]" :
                         cardColor === "orange" ? "border-amber-500/30 bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-black shadow-[0_0_10px_rgba(245,158,11,0.1)]" :
